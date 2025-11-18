@@ -1,7 +1,7 @@
 export default function Header() {
   return (
     <section>
-      <p>Hello from the Header</p>
+      <p className="bg-blue-100">Hello from the Header</p>
     </section>
   );
 }

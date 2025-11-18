@@ -1,7 +1,7 @@
 export default function Cards() {
   return (
     <section>
-      <p>Hello from the Cards section</p>
+      <p className="bg-green-100">Hello from the Cards section</p>
     </section>
   );
 }
