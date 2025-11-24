@@ -8,9 +8,7 @@ export default function SearchBar() {
     e.preventDefault();
     const searchText = e.target.elements.input.value.trim().toLowerCase();
 
-    // const searchText = getSearchValue();
     if (!searchText) return;
-
     getPokemon(`${pokemonPath}/${searchText}`).then((pokemon) => {
       console.log(pokemon);
       e.target.elements.input.value = '';
