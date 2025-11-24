@@ -1,8 +1,8 @@
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import CardsList from './components/CardsList';
-import { useState } from 'react';
 import FilterFavorites from './components/FilterFavorites';
+import { useState } from 'react';
 
 function App() {
   let cards = [
