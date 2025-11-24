@@ -14,9 +14,3 @@ export default function CardItem({ card }) {
     </div>
   );
 }
-
-//   const cardDiv = document.createElement('div');
-//   const cardTitle = document.createElement('h6');
-//   const image = document.createElement('img');
-//   const statsList = document.createElement('ul');
-//   const catchBtn = document.createElement('button');

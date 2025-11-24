@@ -48,22 +48,18 @@ function App() {
     },
   ];
 
-  const [currentList, addCard] = useState(cards);
+  const [currentList, newList] = useState(cards);
 
-  function addCardToList(text) {
-    const newCard = {
-      id: currentList.length + 1,
-      text,
-      completed: false,
-    };
-    return addCard((prev) => [...prev, newCard]);
+  function updateCardsList(list) {
+    console.log(list);
+    return newList(list);
   }
 
   return (
     <div>
       <Header />
-      <SearchBar />
-      <FilterFavorites />
+      <SearchBar updateList={updateCardsList} />
+      <FilterFavorites updateList={updateCardsList} />
       <CardsList cards={currentList} />
     </div>
   );
