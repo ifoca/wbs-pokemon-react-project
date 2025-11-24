@@ -73,8 +73,13 @@ export default App;
 
 // we need to initial list to 20 cards or so
 
-// we need a component to build the card for
-// each of the items in the list with functional updated
-
 // we need to "reset" the list to 1 card when searching
 // for an item, with direct update, not functional one
+
+// we need an update list component
+// when searching for an item, use the direct update
+// and set the initial value to the searched item
+
+// when favoriting one item, we need to add them to the local storage
+// set the value of favorite: to true?
+// get the local storage and
