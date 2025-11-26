@@ -1,7 +1,7 @@
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import CardsList from './components/CardsList';
-import FilterFavorites from './components/FilterFavorites';
+import { getLocalStorageItem } from './modules/storage.js';
 import { useState } from 'react';
 
 function App() {
@@ -48,34 +48,38 @@ function App() {
     },
   ];
 
-  const [currentList, newList] = useState(cards);
+  // initial value should be the all pokemon fetch
+  const [currentList, setNewList] = useState(cards);
+  const [favorites, addFavorites] = useState(getLocalStorageItem());
 
-  function updateCardsList(list) {
-    console.log(list);
-    return newList(list);
+  /* 
+  compare the current list to the local storage
+      if list.id === localStorage.item.id
+          set the favorite property to true
+          set this as the new list 
+          --> the buttons will be disabled 
+  */
+
+  function handleAddFavorites(item) {
+    const updatedItem = { ...item, favorite: true };
+
+    console.log(updatedItem);
+    setNewList((prev) => prev.map((i) => (i.id === item.id ? updatedItem : i)));
+
+    addFavorites((prev) => {
+      const updated = [...prev, updatedItem];
+      localStorage.setItem('favoritePokemon', JSON.stringify(updated));
+      return updated;
+    });
   }
 
   return (
     <div>
       <Header />
-      <SearchBar updateList={updateCardsList} />
-      <FilterFavorites updateList={updateCardsList} />
-      <CardsList cards={currentList} />
+      <SearchBar updatedList={setNewList} />
+      <CardsList cards={currentList} onFavorite={handleAddFavorites} />
     </div>
   );
 }
 
 export default App;
-
-// we need to initial list to 20 cards or so
-
-// we need to "reset" the list to 1 card when searching
-// for an item, with direct update, not functional one
-
-// we need an update list component
-// when searching for an item, use the direct update
-// and set the initial value to the searched item
-
-// when favoriting one item, we need to add them to the local storage
-// set the value of favorite: to true?
-// get the local storage and
