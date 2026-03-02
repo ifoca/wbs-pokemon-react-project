@@ -1,16 +1,15 @@
 import { getPokemon } from '../modules/network';
-import { getSearchValue } from '../modules/ui';
 
 const pokemonPath = 'https://pokeapi.co/api/v2/pokemon';
 
-export default function SearchBar() {
+export default function SearchBar({ updatedList }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    const searchText = getSearchValue();
-    if (!searchText) return;
+    const searchText = e.target.elements.input.value.trim().toLowerCase();
 
+    if (!searchText) return;
     getPokemon(`${pokemonPath}/${searchText}`).then((pokemon) => {
-      console.log(pokemon);
+      updatedList([pokemon]);
       e.target.elements.input.value = '';
     });
   };
